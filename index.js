@@ -25,7 +25,6 @@
         instrument = instruments[_i];
         instrument({
           status: 'request',
-          action: message.action || name,
           data: message
         });
       }
@@ -37,7 +36,6 @@
           instrument = instruments[_j];
           _results.push(instrument({
             status: status,
-            action: message.action || name,
             data: output
           }));
         }

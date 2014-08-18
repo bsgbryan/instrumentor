@@ -25,13 +25,13 @@ wrap
 				.progress (update) -> process 'notify',  update
 
 			for instrument in instruments
-				instrument status: 'request', action: message.action || name, data: message
+				instrument status: 'request', data: message
 
 			process = (status, output) ->
 				deferred[status] output
 							
 				for instrument in instruments
-					instrument status: status, action: message.action || name, data: output
+					instrument status: status, data: output
 
 			deferred.promise
 
