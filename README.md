@@ -1,48 +1,15 @@
 Overview
 --------
 
-Initialization
---------------
+instrumentor is intended to make it super easy to wrap modules in additional behavior.
 
-	q 		 	  	= require 'q'
-	instruments = [ ]
+instrumentor only works for modules that expose a single function which returns a promise.
 
-instrument
+How to use
 ----------
 
-	instrument = (module, name) -> wrap name || module, require module
+First we need to get an instrumentor:
 
-wrap
-----
-
-	wrap = (name, module) ->
-		(message) ->
-			deferred = q.defer()
-			
-			module message
-				.then 		(result) -> process 'resolve', result
-				.fail 		(err	 ) -> process 'reject',  err
-				.progress (update) -> process 'notify',  update
-
-			for instrument in instruments
-				instrument status: 'request', action: message.action || name, data: message
-
-			process = (status, output) ->
-				deferred[status] output
-							
-				for instrument in instruments
-					instrument status: status, action: message.action || name, data: output
-
-			deferred.promise
-
-use
----
-
-	use = (instrument) -> instruments.push instrument
-
-Public interface
-----------------
-
-	module.exports =
-		instrument: instrument
-		use: 				use
+```javascript
+	var instrumentor = require('instrumentor')
+```
