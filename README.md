@@ -17,10 +17,9 @@ First we need to get an instrumentor:
 Add instruments
 ---------------
 
-instrumentor follows express's lead. instrumentor uses instruments, so you call `use` to add
-them. 
+Call `use` to add an instrument.
 
-__PLEASE NOTE__ _instrumentor's instrument list is global_
+__PLEASE NOTE__ _the instrument list is global_
 
 ```javascript
   var logger   = require('logging_module')
@@ -45,4 +44,5 @@ module behaves as expected - instrument's behaviors are transparent to the calle
 What is an instrument?
 ======================
 
-An instrument is module defines some behavior around promise events and returns a promise.
+An instrument is module defines some behavior around promise events. instruments for not need to 
+return a promise - they simply need to understand how to handle promise events (`resolve`, `reject`, and `update`) as well as the `request` event. `request` is the event that kicks off a module's invokation.
