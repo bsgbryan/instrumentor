@@ -6,11 +6,11 @@
 
   instruments = [];
 
-  instrument = function(module, name) {
-    return wrap(name || module, require(module));
+  instrument = function(module) {
+    return wrap(module, require(module));
   };
 
-  wrap = function(name, module) {
+  wrap = function(module) {
     return function(message) {
       var deferred, process, _i, _len;
       deferred = q.defer();

@@ -10,12 +10,12 @@ Initialization
 instrument
 ----------
 
-	instrument = (module, name) -> wrap name || module, require module
+	instrument = (module) -> wrap module, require module
 
 wrap
 ----
 
-	wrap = (name, module) ->
+	wrap = (module) ->
 		(message) ->
 			deferred = q.defer()
 			
