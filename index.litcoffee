@@ -10,7 +10,7 @@ Initialization
 instrument
 ----------
 
-	instrument = (module) -> wrap module, require module
+	instrument = (module) -> wrap require module
 
 wrap
 ----

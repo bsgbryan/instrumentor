@@ -7,7 +7,7 @@
   instruments = [];
 
   instrument = function(module) {
-    return wrap(module, require(module));
+    return wrap(require(module));
   };
 
   wrap = function(module) {
