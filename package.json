@@ -1,0 +1,32 @@
+{
+  "name": "instrumentor",
+  "version": "1.0.0",
+  "description": "A simple way to wrap modules that expose their functionality via promises in additional behavior",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:bsgbryan/instrumentor.git"
+  },
+  "keywords": [
+    "instrument",
+    "behavior",
+    "promises",
+    "wrap"
+  ],
+  "author": "Bryan Maynard <bsgbryan@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bsgbryan/instrumentor/issues"
+  },
+  "homepage": "https://github.com/bsgbryan/instrumentor",
+  "dependencies": {
+    "q": "^1.0.1"
+  },
+  "devDependencies": {
+    "coffee-script": "^1.7.1",
+    "docco": "^0.6.3"
+  }
+}
