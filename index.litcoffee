@@ -10,7 +10,7 @@ Initialization
 instrument
 ----------
 
-	instrument = (module) -> wrap require module
+	instrument = (thing) -> wrap require "#{ module.exports.root }/#{ thing }"
 
 wrap
 ----
@@ -46,3 +46,4 @@ Public interface
 	module.exports =
 		instrument: instrument
 		use: 				use
+		root: 			'~'
