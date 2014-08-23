@@ -6,8 +6,8 @@
 
   instruments = [];
 
-  instrument = function(module) {
-    return wrap(require(module));
+  instrument = function(thing) {
+    return wrap(require("" + module.exports.root + "/" + thing));
   };
 
   wrap = function(module) {
@@ -51,7 +51,8 @@
 
   module.exports = {
     instrument: instrument,
-    use: use
+    use: use,
+    root: '~'
   };
 
 }).call(this);
