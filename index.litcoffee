@@ -4,46 +4,46 @@ Overview
 Initialization
 --------------
 
-	q 		 	  	= require 'q'
-	instruments = [ ]
+    q           = require 'q'
+    instruments = [ ]
 
 instrument
 ----------
 
-	instrument = (thing) -> wrap require "#{ module.exports.root }/#{ thing }"
+    instrument = (thing) -> wrap require "#{ module.exports.root }/#{ thing }"
 
 wrap
 ----
 
-	wrap = (module) ->
-		(message) ->
-			deferred = q.defer()
-			
-			module message
-				.then 		(result) -> process 'resolve', result
-				.fail 		(err	 ) -> process 'reject',  err
-				.progress (update) -> process 'notify',  update
+    wrap = (module) ->
+      (message) ->
+        deferred = q.defer()
+        
+        module message
+          .then     (result) -> process 'resolve', result
+          .fail     (err   ) -> process 'reject',  err
+          .progress (update) -> process 'notify',  update
 
-			for instrument in instruments
-				instrument status: 'request', data: message
+        for instrument in instruments
+          instrument status: 'request', data: message
 
-			process = (status, output) ->
-				deferred[status] output
-							
-				for instrument in instruments
-					instrument status: status, data: output
+        process = (status, output) ->
+          deferred[status] output
+                
+          for instrument in instruments
+            instrument status: status, data: output
 
-			deferred.promise
+        deferred.promise
 
 use
 ---
 
-	use = (instrument) -> instruments.push instrument
+    use = (instrument) -> instruments.push instrument
 
 Public interface
 ----------------
 
-	module.exports =
-		instrument: instrument
-		use: 				use
-		root: 			'~'
+    module.exports =
+      instrument: instrument
+      use:        use
+      root:       '~'
