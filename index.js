@@ -7,7 +7,7 @@
   instruments = [];
 
   instrument = function(thing) {
-    return wrap(require("" + module.exports.root + "/" + thing));
+    return wrap(require(thing));
   };
 
   wrap = function(module) {
@@ -29,15 +29,19 @@
         });
       }
       process = function(status, output) {
-        var _j, _len1, _results;
+        var data, _j, _len1, _results;
         deferred[status](output);
         _results = [];
         for (_j = 0, _len1 = instruments.length; _j < _len1; _j++) {
           instrument = instruments[_j];
-          _results.push(instrument({
+          data = {
             status: status,
             data: output
-          }));
+          };
+          if (message.action) {
+            data.action = message.action;
+          }
+          _results.push(instrument(data));
         }
         return _results;
       };
@@ -51,8 +55,7 @@
 
   module.exports = {
     instrument: instrument,
-    use: use,
-    root: '~'
+    use: use
   };
 
 }).call(this);
