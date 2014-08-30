@@ -10,7 +10,7 @@ Initialization
 instrument
 ----------
 
-    instrument = (thing) -> wrap require "#{ module.exports.root }/#{ thing }"
+    instrument = (thing) -> wrap require thing
 
 wrap
 ----
@@ -31,7 +31,11 @@ wrap
           deferred[status] output
                 
           for instrument in instruments
-            instrument status: status, data: output
+            data = status: status, data: output
+
+            data.action = message.action if message.action
+            
+            instrument data
 
         deferred.promise
 
@@ -46,4 +50,3 @@ Public interface
     module.exports =
       instrument: instrument
       use:        use
-      root:       '~'
