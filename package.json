@@ -1,6 +1,6 @@
 {
   "name": "instrumentor",
-  "version": "1.1.4",
+  "version": "1.1.5",
   "description": "A simple way to wrap modules that expose their functionality via promises in additional behavior",
   "main": "index.js",
   "scripts": {

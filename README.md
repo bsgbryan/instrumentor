@@ -29,14 +29,14 @@ __PLEASE NOTE__ _the instrument list is global_
   instrumentor.use(profiler)
 ```
 
-Wrap a module
+Instrument a module
 -------------
 
-the `wrap` method returns an instrumented module, wrapped in all used instruments. The returned
+the `instrument` method returns an instrumented module, wrapped in all used instruments. The returned
 module behaves as expected - instrument's behaviors are transparent to the caller.
 
 ```javascript
-  var instrumented_module = instrumentor.wrap('raw_module')
+  var instrumented_module = instrumentor.instrument('raw_module')
 
   var raw_module_output = instrumented_module(args)
 ```
